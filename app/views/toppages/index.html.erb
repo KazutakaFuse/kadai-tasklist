@@ -1,10 +1,17 @@
-<div class="center jumbotron">
-  <div class="text-center">
-    <h1>Welcome to the Tasklists</h1>
-    <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
+<% if logged_in? %>
+  <div class="row">
+    <aside class="col-md-4">
+      <%= form_for(@tasklist) do |f| %>
+        <div class="form-group">
+          <%= f.text_area :content, class: 'form-control', rows: 5 %>
+        </div>
+        <%= f.submit 'Post', class: 'btn btn-primary btn-block' %>
+      <% end %>
+    </aside>
+    <div class="col-xs-8">
+      <%= render 'tasklists/tasklists', tasklists: @tasklists, user: @user %>
+    </div>
   </div>
-  <% if logged_in? %>
-  <p>ログイン完了ユーザ: <%= current_user.name %></p>
 <% else %>
   <div class="center jumbotron">
     <div class="text-center">
@@ -13,4 +20,3 @@
     </div>
   </div>
 <% end %>
-</div>

@@ -1,4 +1,6 @@
-# Be sure to restart your server when you modify this file.
-
-# Configure sensitive parameters which will be filtered from the log file.
-Rails.application.config.filter_parameters += [:password]
+Rails.application.config.generators do |g|
+  g.stylesheets false
+  g.javascripts false
+  g.helper false
+  g.skip_routes true
+end
