@@ -48,4 +48,9 @@ class TasklistsController < ApplicationController
       redirect_to root_path
     end
   end
+  
+  def select_user
+  @tasklist = Tasklist.find(params[:id])
+  redirect_to root_path if @tasklist.user != current_user
+  end
 end
