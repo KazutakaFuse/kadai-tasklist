@@ -23,7 +23,7 @@ class TasklistsController < ApplicationController
 
     if @tasklist.update(tasklist_params)
       flash[:success] = 'Tasklist は正常に更新されました'
-      redirect_to @tasklist
+      redirect_to root_url
     else
       flash.now[:danger] = 'Tasklist は更新されませんでした'
       render :edit
