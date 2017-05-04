@@ -2,6 +2,14 @@ class TasklistsController < ApplicationController
   before_action :require_user_logged_in
   before_action :correct_user, only: [ :edit, :update, :destroy]
   
+  def index
+    @tasklists = Tasklist.all
+  end
+  
+  def new
+    @tasklist = Tasklist.new
+  end
+  
   def create
     @tasklist = current_user.tasklists.build(tasklist_params)
     if @tasklist.save
@@ -50,7 +58,7 @@ class TasklistsController < ApplicationController
   end
   
   def select_user
-  @tasklist = Tasklist.find(params[:id])
-  redirect_to root_path if @tasklist.user != current_user
+    @tasklist = Tasklist.find(params[:id])
+    redirect_to root_path if @tasklist.user != current_user
   end
 end

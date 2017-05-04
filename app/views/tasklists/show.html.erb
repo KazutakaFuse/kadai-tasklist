@@ -1,6 +1,7 @@
 <h1>id = <%= @tasklist.id %> のタスクリスト詳細ページ</h1>
 
-<p><%= @tasklist.content %></p>
+<p>ステータス: <%= @tasklist.status %></p>
+<p>タスク:<%= @tasklist.content %></p>
 
 <%= link_to '一覧に戻る', tasklists_path %>
 <%= link_to 'このメッセージを編集する', edit_tasklist_path(@tasklist) %>
