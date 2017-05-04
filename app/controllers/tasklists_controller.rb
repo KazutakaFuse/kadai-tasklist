@@ -1,6 +1,6 @@
 class TasklistsController < ApplicationController
   before_action :require_user_logged_in
-  before_action :correct_user, only: [:destroy]
+  before_action :correct_user, only: [ :edit, :update, :destroy]
   
   def create
     @tasklist = current_user.tasklists.build(tasklist_params)
@@ -15,17 +15,17 @@ class TasklistsController < ApplicationController
   end
   
   def edit
-    @task = Task.find(params[:id])
+    @tasklist = Tasklist.find(params[:id])
   end
   
   def update
-    @task = Task.find(params[:id])
+    @tasklist = Tasklist.find(params[:id])
 
-    if @task.update(message_params)
-      flash[:success] = 'Task は正常に更新されました'
-      redirect_to @task
+    if @tasklist.update(tasklist_params)
+      flash[:success] = 'Tasklist は正常に更新されました'
+      redirect_to @tasklist
     else
-      flash.now[:danger] = 'Task は更新されませんでした'
+      flash.now[:danger] = 'Tasklist は更新されませんでした'
       render :edit
     end
   end

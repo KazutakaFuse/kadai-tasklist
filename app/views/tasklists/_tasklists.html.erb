@@ -15,6 +15,7 @@
         <div>
           <% if current_user == tasklist.user %>
             <%= link_to "Delete", tasklist, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-xs' %>
+            <%= link_to "Edit", edit_tasklist_path(tasklist), class: 'btn btn-danger btn-xs' %>
           <% end %>
         </div>
       </div>
