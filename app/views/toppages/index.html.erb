@@ -1,17 +1,12 @@
 <% if logged_in? %>
-  <div class="row">
-    <aside class="col-md-4">
-      <%= form_for(@tasklist) do |f| %>
-        <div class="form-group">
-          <%= f.text_area :content, class: 'form-control', rows: 5 %>
-        </div>
-        <%= f.submit 'Post', class: 'btn btn-primary btn-block' %>
-      <% end %>
-    </aside>
-    <div class="col-xs-8">
-      <%= render 'tasklists/tasklists', tasklists: @tasklists, user: @user %>
-    </div>
-  </div>
+  <h1>タスク一覧</h1>
+  <ul>
+    <% @tasklists.each do |tasklist| %>
+      <li><%= link_to tasklist.id, tasklist %> :  <%= tasklist.status %> > <%= tasklist.content %></li>
+    <% end %>
+  </ul>
+  <%= link_to '新規タスクの投稿', new_tasklist_path, class: "btn btn-primary" %>
+  
 <% else %>
   <div class="center jumbotron">
     <div class="text-center">

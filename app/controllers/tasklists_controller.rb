@@ -1,9 +1,9 @@
 class TasklistsController < ApplicationController
   before_action :require_user_logged_in
-  before_action :correct_user, only: [ :edit, :update, :destroy]
+  before_action :correct_user, only: [ :edit, :update, :destroy, :show]
   
   def index
-    @tasklists = Tasklist.all
+   redirect_to root_url
   end
   
   def new
@@ -47,7 +47,7 @@ class TasklistsController < ApplicationController
   private
 
   def tasklist_params
-    params.require(:tasklist).permit(:content)
+    params.require(:tasklist).permit(:content, :status)
   end
   
   def correct_user
